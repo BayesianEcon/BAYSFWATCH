@@ -2,8 +2,7 @@
 
 <br><br>
 
-# BAYSF
-#   WATCH
+# BAYSF\nWATCH
 An R Package for Outlier Detection with Matrix-variate Data
 
 You can install **BAYSFWATCH** from GitHub with:
