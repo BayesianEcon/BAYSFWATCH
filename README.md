@@ -3,7 +3,7 @@
 <br><br>
 
 <h1>BAYSF<br>WATCH</h1>
-An R Package for Outlier Detection with Matrix-variate Data
+##An R Package for Outlier Detection with Matrix-variate Data
 
 You can install **BAYSFWATCH** from GitHub with:
 
