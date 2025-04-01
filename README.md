@@ -12,6 +12,11 @@ You can install **BAYSFWATCH** from GitHub with:
 install.packages("devtools")
 devtools::install_github("BayesianEcon/BAYSFWATCH")
 ```
+Or you can install BAYSFWATCH with the pre-loaded vignette:
 
+```r
+devtools::install_github("BayesianEcon/BAYSFWATCH", build_vignettes = TRUE)
+vignette("introduction",package = "BAYSFWATCH")
+```
 
 [View the Vignette](https://BayesianEcon.github.io/BAYSFWATCH/introduction.html)
