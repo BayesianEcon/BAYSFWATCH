@@ -1,4 +1,4 @@
-<img src="man/figures/logo.png" width="120" align="left" />
+<img src="man/figures/logo.png" width="130" align="left" />
 
 <br><br>
 
