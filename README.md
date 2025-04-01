@@ -5,4 +5,4 @@
 # BAYSFWATCH
 An R Package for Outlier Detection with Matrix-variate Data
 
-[Read the Introduction vignette](vignettes/Introduction.md)
+[Read the Introduction vignette](vignettes/introduction.md)
