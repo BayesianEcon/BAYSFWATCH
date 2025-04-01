@@ -1,0 +1,82 @@
+---
+title: "BAYSFWATCH:
+An R Package for Outlier Detection with Matrix-variate Data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r echo=TRUE}
+library(BAYSFWATCH)
+
+#Generate a Synthetic Dataset or use your own data
+#A set of outliers have been injected in Ts p x n matrices
+#outv allows to pick a value for the value to the outliers
+#outc is  an integer (1 to 4) defining the type of outlier injection:
+#   - 1: Adds `outv` to all values in the matrix.
+#   - 2: Adds `outv` to a single element (1,1) in the matrix.
+#   - 3: Adds `outv` to `outn` randomly chosen elements in the matrix.
+#   - 4: Adds `outv` to `Rcn` columns and `Rrn` rows, randomly selected.
+# outn is the number of outliers to inject (only used in options 3 and 4). Must be lower than `pxn`.
+#see the documentation to set the other parameters
+?GenData
+
+Data<-GenData(outv = 5, outc = 3, outn = 6, Rcn = 3, Rrn = 2)
+
+set.seed(42)
+matrix1 <- Data$X3D[,,79]
+matrix2 <- Data$X3D[,,80]
+matrix3 <- Data$X3D[,,81]
+
+# Define the common color scale
+zlim <- range(c(matrix1, matrix2, matrix3))
+
+
+# Plot the three matrices
+image(matrix1, col = heat.colors(100), main = "Matrix 79", zlim = zlim)
+image(matrix2, col = heat.colors(100), main = "Matrix 80", zlim = zlim) #outliers here
+image(matrix3, col = heat.colors(100), main = "Matrix 81", zlim = zlim)
+
+```
+
+```{r}
+#Example 1: Outlier Detection 
+#see the documentation to set the other parameters
+?OutlierDetection
+
+results <- OutlierDetection(Data$X3D,  M = Data$M, Sl = Data$Sl, V =  Data$V)
+
+```
+
+```{r}
+#Example 2: Outlier Detection with MLE and one single outlier
+#Generate the Data with one single outlier in position (1,1) to matrix 80.
+Data<-GenData(outv = 2, outc = 2, outn = 6, Rcn = 3, Rrn = 2)
+
+#If M, Sl and V are not specified the algorithm authomatically computes matrices recursivelly via MLE.
+#Note that when we introduce one single outlier with moderate absolute value, the uncertainty about the nature of the outlier is higher.
+
+
+results <- OutlierDetection(Data$X3D)
+```
+
+
+```{r}
+#Example 3: When the magnitude of the outlier is small we don't observe outlier detection as expected.
+
+Data<-GenData(outv = 1, outc = 2, outn = 6, Rcn = 3, Rrn = 2)
+
+#If M, Sl and V are not specified the algorithm authomatically computes matrices recursivelly via MLE.
+#Note that when we introduce one single outlier with moderate absolute value, the uncertainty about the nature of the outlier is higher.
+
+results <- OutlierDetection(Data$X3D)
+```
