@@ -3,13 +3,12 @@ Title: BAYSFWATCH: An R Package for Outlier Detection with Matrix-variate Data
 Version: 0.0.0.9000
 Authors@R: c(
     person("Monica", "Billio", email = "billio@unive.it", role = c("aut"),
-           comment = c(ORCID = "YOUR-ORCID-ID")),
+           comment = c(ORCID = "0000-0002-6690-0832")),
     person("Roberto", "Casarin", email = "r.casarin@unive.it", role = c("aut"),
-           comment = c(ORCID = "YOUR-ORCID-ID")),
-    person("Fausto", "Corradin", email = "fausto.corradin@unive.it", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID")),
+           comment = c(ORCID = "0000-0003-1746-9190")),
+    person("Fausto", "Corradin", email = "fausto.corradin@unive.it", role = c("aut")),
     person("Antonio", "Peruzzi", email = "antonio.peruzzi@unive.it", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID")))
+           comment = c(ORCID = "0000-0001-8865-943X")))
 Description: What the package does (one paragraph).
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license

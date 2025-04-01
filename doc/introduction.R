@@ -1,13 +1,4 @@
----
-title: "BAYSFWATCH: An R Package for Outlier Detection with Matrix-variate Data"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{BAYSFWATCH: An R Package for Outlier Detection with Matrix-variate Data}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
-
-```{r, include = FALSE}
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   message = FALSE,
   warning = FALSE,
@@ -15,11 +6,8 @@ knitr::opts_chunk$set(
   out.width = "120px"      # adjust logo size
 )
 options(width = 80)
-```
 
-<img src="logo.png" width="130" align="left" />
-
-```{r echo=TRUE, fig.width=8, fig.height=3, out.width="100%", results='hide'}
+## ----echo=TRUE, fig.width=8, fig.height=3, out.width="100%", results='hide'----
 library(BAYSFWATCH)
 
 #Generate a Synthetic Dataset or use your own data
@@ -60,18 +48,16 @@ blue_col <- colorRampPalette(c("white", "lightblue", "blue"))(100)
 image(matrix1, col = blue_col, main = "Matrix 79", zlim = zlim)
 image(matrix2, col = blue_col, main = "Matrix 80", zlim = zlim) #outliers
 image(matrix3, col = blue_col, main = "Matrix 81", zlim = zlim)
-```
 
-```{r, results='hide', fig.width=8, fig.height=3, out.width="100%"}
+## ----results='hide', fig.width=8, fig.height=3, out.width="100%"--------------
 #Example 1: Outlier Detection 
 #see the documentation to set the other parameters
 ?OutlierDetection
 
 results <- OutlierDetection(Data$X3D,  M = Data$M, Sl = Data$Sl, V =  Data$V)
 
-```
 
-```{r, results='hide', fig.width=8, fig.height=3, out.width="100%"}
+## ----results='hide', fig.width=8, fig.height=3, out.width="100%"--------------
 #Example 2: Outlier Detection with MLE and one single outlier
 #Generate the Data with one single outlier in position (1,1) to matrix 80.
 Data<-GenData(outv = 2, outc = 2, outn = 6, Rcn = 3, Rrn = 2)
@@ -82,13 +68,11 @@ Data<-GenData(outv = 2, outc = 2, outn = 6, Rcn = 3, Rrn = 2)
 #the uncertainty about the nature of the outlier is higher.
 
 results <- OutlierDetection(Data$X3D)
-```
 
-
-```{r, results='hide', fig.width=8, fig.height=3, out.width="100%"}
+## ----results='hide', fig.width=8, fig.height=3, out.width="100%"--------------
 #Example 3: When the magnitude of the outlier is small,
 #we don't observe outlier detection as expected.
 
 Data<-GenData(outv = 1, outc = 2, outn = 6, Rcn = 3, Rrn = 2)
 results <- OutlierDetection(Data$X3D)
-```
+
