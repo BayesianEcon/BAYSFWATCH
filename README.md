@@ -13,4 +13,4 @@ install.packages("devtools")
 devtools::install_github("BayesianEcon/BAYSFWATCH")
 ```
 
-[Read the Introduction vignette](vignettes/introduction.Rmd)
+[Read the Introduction vignette](./doc/introduction.html)
