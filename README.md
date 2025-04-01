@@ -1,11 +1,10 @@
-<img src="man/figures/logo.png" width="140" align="left" />
+<img src="man/figures/logo.png" width="150" align="left" />
 
 <br><br>
-
 <h1>BAYSF<br>WATCH</h1>
 An R Package for Outlier Detection with Matrix-variate Data
-<br>
-You can install **BAYSFWATCH** from GitHub with:
+<br><br>
+You can install BAYSFWATCH from GitHub with:
 
 ```r
 # Using devtools
