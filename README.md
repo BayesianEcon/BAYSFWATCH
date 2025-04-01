@@ -10,7 +10,7 @@ You can install **BAYSFWATCH** from GitHub with:
 ```r
 # Using devtools
 install.packages("devtools")
-devtools::install_github("yourusername/BAYSFWATCH")
+devtools::install_github("BayesianEcon/BAYSFWATCH")
 ```
 
 [Read the Introduction vignette](vignettes/introduction.Rmd)
