@@ -35,12 +35,16 @@ library(BAYSFWATCH)
 #see the documentation to set the other parameters
 ?GenData
 
+set.seed(42)
 Data<-GenData(outv = 5, outc = 3, outn = 6, Rcn = 3, Rrn = 2)
 
-set.seed(42)
 matrix1 <- Data$X3D[,,79]
 matrix2 <- Data$X3D[,,80]
 matrix3 <- Data$X3D[,,81]
+
+matrix1_no_outliers <- Data$X3D0[,,79]
+matrix2_no_outliers <- Data$X3D0[,,80]
+matrix3_no_outliers <- Data$X3D0[,,81]
 
 # Define the common color scale
 zlim <- range(c(matrix1, matrix2, matrix3))
@@ -60,6 +64,15 @@ blue_col <- colorRampPalette(c("white", "lightblue", "blue"))(100)
 image(matrix1, col = blue_col, main = "Matrix 79", zlim = zlim)
 image(matrix2, col = blue_col, main = "Matrix 80", zlim = zlim) #outliers
 image(matrix3, col = blue_col, main = "Matrix 81", zlim = zlim)
+
+# Plot Outliers
+zlim <- range(c(matrix1-matrix1_no_outliers,
+                matrix2-matrix2_no_outliers,
+                matrix3-matrix3_no_outliers))
+
+image(matrix1-matrix1_no_outliers, col = blue_col, main = "Matrix 79", zlim = zlim)
+image(matrix2-matrix2_no_outliers, col = blue_col, main = "Matrix 80 - Outliers", zlim = zlim) 
+image(matrix3-matrix3_no_outliers, col = blue_col, main = "Matrix 81", zlim = zlim)
 ```
 
 ```{r, results='hide', fig.width=8, fig.height=3, out.width="100%"}
@@ -72,19 +85,7 @@ results <- OutlierDetection(Data$X3D,  M = Data$M, Sl = Data$Sl, V =  Data$V)
 ```
 
 ```{r, results='hide', fig.width=8, fig.height=3, out.width="100%"}
-#Example 2: Outlier Detection with MLE and one single outlier
-#Generate the Data with one single outlier in position (1,1) to matrix 80.
-Data<-GenData(outv = 2, outc = 2, outn = 6, Rcn = 3, Rrn = 2)
-
-#If M, Sl and V are not specified,
-#the algorithm automatically computes matrices recursively via MLE.
-
-results <- OutlierDetection(Data$X3D)
-```
-
-
-```{r, results='hide', fig.width=8, fig.height=3, out.width="100%"}
-#Example 3: When the magnitude of the outlier is small,
+#Example 2: Outlier Detection with MLE and one single outlier entry (outc=2).
 #Note that when we introduce one single outlier with moderate absolute value, 
 #the uncertainty about the nature of the outlier is higher.
 
