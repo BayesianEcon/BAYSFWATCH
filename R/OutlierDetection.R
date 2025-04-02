@@ -51,7 +51,7 @@ OutlierDetection <- function(X3D,
   estim <- FALSE
   if (is.null(M) || is.null(Sl) || is.null(V)) {
     if (verbose) message("Estimating matrices via ML...")
-    Estimation <- MixMatrix::MLmatrixnorm(X3D[,,Training])
+    Estimation <- MixMatrix::MLmatrixnorm(X3D[,,Training, drop = FALSE])
     M <- Estimation$mean
     Sl <- Estimation$U  # Assumption for normalization here
     V <- Estimation$V*Estimation$var
