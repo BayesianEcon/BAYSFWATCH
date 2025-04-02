@@ -8,6 +8,11 @@ OutlierBFJ <- function(X3D, M, Sl, V, RollW = TRUE, kk = 40, vv = 0.1, dtvs = 0.
   n <- dim(X0)[2]
   T0 <- dim(X0)[3]
 
+  if (p == 1 || n == 1||T0 == 1) {
+    stop("This function does not currently support p = 1 or n = 1 or T = 1. Please use p > 1, n > 1 and T > 1.")
+  }
+
+
   Sp <- Sl / vv
   dtv <- seq(dtvs, dte, (dte-dtvs)/(dts-1))
 
@@ -49,11 +54,13 @@ OutlierBFJ <- function(X3D, M, Sl, V, RollW = TRUE, kk = 40, vv = 0.1, dtvs = 0.
 
     Yt <- X0[, , T0 - kk + k]
 
-    kron_ones_eye <- kronecker(matrix(1, T, 1), diag(p))
-    kron_eye_Sl <- kronecker(diag(T), Sl)
+    Xbar <- apply(Xk, c(1, 2), mean)  # (p x n) average over T
 
-    Ms <- M + (Sp %*% t(kron_ones_eye) %*% solve(kron_eye_Sl + kron_ones_eye %*% Sp %*% t(kron_ones_eye)) %*% (Y - kronecker(matrix(1, T,1), M)))
-    Ss <- Sp - (Sp %*% t(kron_ones_eye) %*% solve(kron_eye_Sl + kron_ones_eye %*% Sp %*% t(kron_ones_eye)) %*% kron_ones_eye %*% Sp)
+    A <- Sp
+    B <- Sl / T + Sp
+
+    Ms <- M + A %*% solve(B, Xbar - M)
+    Ss <- A - A %*% solve(B, A)
 
     if (k == 1) Mku[, , k] <- Ms
 
