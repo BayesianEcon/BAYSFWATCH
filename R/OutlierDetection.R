@@ -78,7 +78,7 @@ OutlierDetection <- function(X3D,
     p2 <- p2 +  geom_line(linewidth = 0.3)
     p2 <- p2 +  geom_line(aes(x = index, y = hlb), linewidth = 0.3, linetype = "dashed", col = "red")
     p2 <- p2 + geom_line(aes(x = index, y = hub), linewidth = 0.3, linetype = "dashed", col = "red")
-    p2 <- p2 +   labs(title = "Minimum BF")
+    p2 <- p2 +   labs(title = "Calibrated BF")
     p2 <- p2 +  theme_bw()
     p2 <- p2 +  theme(legend.position = "none",
                       axis.text.x = element_text(size = 14, vjust = -1.1),
