@@ -92,3 +92,13 @@ results <- OutlierDetection(Data$X3D,  M = Data$M, Sl = Data$Sl, V =  Data$V)
 Data<-GenData(outv = 1, outc = 2, outn = 6, Rcn = 3, Rrn = 2)
 results <- OutlierDetection(Data$X3D)
 ```
+
+```{r, results='hide', fig.width=8, fig.height=3, out.width="100%"}
+#Benchmark Datasets: Three benchmark datasets are available:
+#-"EUdata" array 3x11x250
+#-"Tradedata" array 27x27x22
+#-"Volatilitydata" array 50x50x145
+
+data("Volatilitydata")
+?Volatilitydata
+```
